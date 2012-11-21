@@ -9,9 +9,11 @@ var WriteStream = require("write-stream")
     , uuid = require("node-uuid")
     , assert = require("assert")
 
+    // See examples/connect.js for implementation.
     , connect = require("./connect")
 
-// connect to the signal channel
+// connect to the signal channel.
+
 connect({
     uri: "//signalchannel.co/sock"
     , namespace: "unique name for app"
