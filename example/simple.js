@@ -6,11 +6,9 @@ var WriteStream = require("write-stream")
 
 // connect to the signal channel
 connect({
-    uri: "//localhost:8080/sock"
+    uri: "//signalchannel.co/sock"
     , namespace: "unique name for app"
 }, function (peers, pool) {
-    console.log("called callback")
-
     // You are given a peers and pool object. peers is a
     // distributed list of all peers connected to your signal
     // channel server on your namespace.
@@ -23,25 +21,23 @@ connect({
     // best to use a unique user name instead.
     var id = uuid()
 
-    console.log("my own id", id)
-
     // Listen to the pool on your own identifier.
     // For each new incoming connection just echo back their data
     pool.listen(id).on("connection", function (stream) {
-        console.log("new connection", stream.peerId)
         stream.pipe(stream)
+        stream.pipe(WriteStream(function onecho(message) {
+            console.log("echo got message", message)
+        }))
     })
 
     // For each new peer, open a connection to them and see
     // whether they echo it back
     peers.on("join", function (peer) {
         if (peer.id <= id) {
-            console.log("other side or self?", peer.id, id)
             // OTHER SIDE HANDLES IT. PEER TO PEER IS SYMETTRIC
             return
         }
 
-        console.log("creating stream")
         var stream = pool.connect(peer.id)
 
         stream.pipe(WriteStream(function onwrite(message) {
@@ -54,3 +50,7 @@ connect({
 
     peers.join({ id: id })
 })
+
+function clique(peers, pool) {
+
+}

@@ -95,7 +95,6 @@ function PeerConnectionPool(options) {
         }
 
         function onconnection(stream) {
-            console.log("connection", stream)
             stream.peerId = remoteId
 
             pool.emit("connection", stream)
