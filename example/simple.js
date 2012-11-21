@@ -1,8 +1,7 @@
 var WriteStream = require("write-stream")
     , uuid = require("node-uuid")
     , assert = require("assert")
-
-    , connect = require("./connect")
+    , connect = require("signal-channel/connect")
 
 // connect to the signal channel
 connect({

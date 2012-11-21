@@ -8,12 +8,11 @@ Pool of peer connections
 var WriteStream = require("write-stream")
     , uuid = require("node-uuid")
     , assert = require("assert")
-
-    // See examples/connect.js for implementation.
-    , connect = require("./connect")
+    , connect = require("signal-channel/connect")
 
 // connect to the signal channel.
-
+// This is a high level utility function. All the pieces are
+// composable and you can build your own.
 connect({
     uri: "//signalchannel.co/sock"
     , namespace: "unique name for app"
