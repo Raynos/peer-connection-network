@@ -1,0 +1,53 @@
+{
+  "name": "peer-connection-pool",
+  "version": "0.1.0",
+  "description": "Pool of peer connections",
+  "keywords": [
+    "webrtc",
+    "p2p",
+    "peer",
+    "real-time",
+    "realtime",
+    "real",
+    "time",
+    "peer2peer"
+  ],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/peer-connection-pool.git",
+  "main": "index",
+  "homepage": "https://github.com/Raynos/peer-connection-pool",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Raynos/peer-connection-pool/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "peer-connection": "~0.2.0",
+    "remote-events": "~1.1.1",
+    "mux-demux-logger": "~0.1.0"
+  },
+  "devDependencies": {
+    "tap": "~0.3.1",
+    "write-stream": "~0.4.3",
+    "node-uuid": "~1.4.0",
+    "mux-demux": "~3.3.6",
+    "reconnect": "~0.3.1",
+    "peer-nodes": "~0.1.3",
+    "peer-connection-shim": "~0.5.0",
+    "signal-channel": "~0.2.4",
+    "through": "~1.1.2"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/peer-connection-pool/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "tap --stderr --tap ./test"
+  }
+}
