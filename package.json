@@ -1,7 +1,7 @@
 {
-  "name": "peer-connection-pool",
+  "name": "peer-connection-network",
   "version": "0.2.2",
-  "description": "Pool of peer connections",
+  "description": "network of peer connections",
   "keywords": [
     "webrtc",
     "p2p",
@@ -13,21 +13,21 @@
     "peer2peer"
   ],
   "author": "Raynos <raynos2@gmail.com>",
-  "repository": "git://github.com/Raynos/peer-connection-pool.git",
+  "repository": "git://github.com/Raynos/peer-connection-network.git",
   "main": "index",
-  "homepage": "https://github.com/Raynos/peer-connection-pool",
+  "homepage": "https://github.com/Raynos/peer-connection-network",
   "contributors": [
     {
       "name": "Jake Verbaten"
     }
   ],
   "bugs": {
-    "url": "https://github.com/Raynos/peer-connection-pool/issues",
+    "url": "https://github.com/Raynos/peer-connection-network/issues",
     "email": "raynos2@gmail.com"
   },
   "dependencies": {
     "peer-connection": "~0.2.0",
-    "remote-events": "git://github.com/Raynos/remote-events#update",
+    "remote-events": "~1.1.2",
     "streams2": "~0.1.1",
     "pause-stream": "0.0.6"
   },
@@ -45,7 +45,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/Raynos/peer-connection-pool/raw/master/LICENSE"
+      "url": "http://github.com/Raynos/peer-connection-network/raw/master/LICENSE"
     }
   ],
   "scripts": {

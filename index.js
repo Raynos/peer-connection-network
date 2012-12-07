@@ -2,23 +2,23 @@ var PeerConnection = require("peer-connection")
     , RemoteEvents = require("remote-events")
     , EventEmitter = require("events").EventEmitter
 
-module.exports = PeerConnectionPool
+module.exports = PeerConnectionnetwork
 
-function PeerConnectionPool(options) {
+function PeerConnectionnetwork(options) {
     var peerHash = {}
         , emitter = new RemoteEvents()
-        , pool = new EventEmitter()
+        , network = new EventEmitter()
         , id
 
     if (typeof options === "function") {
         options = { createConnection: options }
     }
 
-    pool.listen = listen
-    pool.connect = connect
-    pool.createStream = createStream
+    network.listen = listen
+    network.connect = connect
+    network.createStream = createStream
 
-    return pool
+    return network
 
     function listen(localId) {
         id = localId
@@ -29,7 +29,7 @@ function PeerConnectionPool(options) {
 
         emitter.on(id + ":candidate", onremotecandidate)
 
-        return pool
+        return network
     }
 
     function onremoteoffer(remoteId, offer) {
@@ -40,7 +40,7 @@ function PeerConnectionPool(options) {
 
         function onlocalanswer(err, answer) {
             if (err) {
-                return pool.emit("error", err)
+                return network.emit("error", err)
             }
 
             emitter.emit(remoteId + ":answer", id, answer)
@@ -69,11 +69,13 @@ function PeerConnectionPool(options) {
 
         pc.createOffer(onlocaloffer)
 
-        return pc.connect(name)
+        var stream = pc.connect(name)
+        stream.peerId = remoteId
+        return stream
 
         function onlocaloffer(err, offer) {
             if (err) {
-                return pool.emit("error", err)
+                return network.emit("error", err)
             }
 
             emitter.emit(remoteId + ":offer", id, offer)
@@ -97,7 +99,7 @@ function PeerConnectionPool(options) {
         function onconnection(stream) {
             stream.peerId = remoteId
 
-            pool.emit("connection", stream)
+            network.emit("connection", stream)
         }
     }
 
