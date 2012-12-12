@@ -69,9 +69,7 @@ function PeerConnectionnetwork(options) {
 
         pc.createOffer(onlocaloffer)
 
-        var stream = pc.connect(name)
-        stream.peerId = remoteId
-        return stream
+        return pc
 
         function onlocaloffer(err, offer) {
             if (err) {
@@ -86,9 +84,9 @@ function PeerConnectionnetwork(options) {
         var pc = peerHash[remoteId] = PeerConnection(
             options.createConnection())
 
+        pc.peerId = remoteId
         pc.on("candidate", onlocalcandidate)
-
-        pc.on("connection", onconnection)
+        pc.on("open", onopen)
 
         return pc
 
@@ -96,10 +94,8 @@ function PeerConnectionnetwork(options) {
             emitter.emit(remoteId + ":candidate", id, candidate)
         }
 
-        function onconnection(stream) {
-            stream.peerId = remoteId
-
-            network.emit("connection", stream)
+        function onopen(stream) {
+            network.emit("connection", pc)
         }
     }
 
