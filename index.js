@@ -33,7 +33,7 @@ function PeerConnectionnetwork(options) {
     }
 
     function onremoteoffer(remoteId, offer) {
-        // console.log("onremoteoffer")
+        // console.log("onremoteoffer", remoteId)
         var pc = createPeerConnection(remoteId)
 
         pc.createAnswer(offer, onlocalanswer)
@@ -48,7 +48,7 @@ function PeerConnectionnetwork(options) {
     }
 
     function onremoteanswer(remoteId, answer) {
-        // console.log("onremoteanswer")
+        // console.log("onremoteanswer", remoteId)
         var pc = peerHash[remoteId]
 
         pc.setRemote(answer)
@@ -60,7 +60,7 @@ function PeerConnectionnetwork(options) {
         pc.addCandidate(candidate)
     }
 
-    function connect(remoteId, name) {
+    function connect(remoteId) {
         if (!id) {
             throw new Error("must listen before connect")
         }
