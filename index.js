@@ -34,7 +34,7 @@ function PeerConnectionnetwork(options) {
 
     function onremoteoffer(remoteId, offer) {
         // console.log("onremoteoffer", remoteId)
-        var pc = createPeerConnection(remoteId)
+        var pc = createPeerConnection(remoteId, false)
 
         pc.createAnswer(offer, onlocalanswer)
 
@@ -65,7 +65,7 @@ function PeerConnectionnetwork(options) {
             throw new Error("must listen before connect")
         }
 
-        var pc = createPeerConnection(remoteId)
+        var pc = createPeerConnection(remoteId, true)
 
         pc.createOffer(onlocaloffer)
 
@@ -80,13 +80,15 @@ function PeerConnectionnetwork(options) {
         }
     }
 
-    function createPeerConnection(remoteId) {
+    function createPeerConnection(remoteId, opener) {
         var pc = peerHash[remoteId] = PeerConnection(
             options.createConnection())
 
         pc.peerId = remoteId
         pc.on("candidate", onlocalcandidate)
-        pc.on("open", onopen)
+        if (!opener) {
+            pc.on("open", onopen)
+        }
 
         return pc
 
