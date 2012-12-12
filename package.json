@@ -26,7 +26,7 @@
     "email": "raynos2@gmail.com"
   },
   "dependencies": {
-    "peer-connection": "~0.2.0",
+    "peer-connection": "~0.3.0",
     "remote-events": "~1.1.2",
     "streams2": "~0.1.1",
     "pause-stream": "0.0.6"
